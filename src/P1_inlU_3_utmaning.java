@@ -4,12 +4,10 @@ public class P1_inlU_3_utmaning {
     public static void main(String[]args){
         Scanner scanTreSiffror = new Scanner(System.in);
 
-//Asking user for a 3 digit number
-        System.out.print("Skriv in ett tresiffrigt tal: ");
-        String tresiffrigtTal = scanTreSiffror.nextLine();
+        System.out.print("Skriv in ett tresiffrigt tal: ");//Asking user for a 3 digit number
+        String tresiffrigtTal = scanTreSiffror.nextLine(); //Storing
 
-/*Putting the characters into an array to
-refer to them by their index*/
+//Putting the characters into an array to refer to them by their index
         char [] siffrorArray= tresiffrigtTal.toCharArray();
 
 //Getting them individually out with their indexes
