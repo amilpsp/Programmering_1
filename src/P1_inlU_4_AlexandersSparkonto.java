@@ -10,10 +10,10 @@ public class P1_inlU_4_AlexandersSparkonto {
         System.out.println(
                 "Alexander hade " + beloppEfter1Ar +" kr efter ett år.");
 
-        double rantaAndraAret = beloppEfter1Ar * (rantaProcentPerAr / 100);
+        double rantaAndraAret = beloppEfter1Ar * (
+                rantaProcentPerAr / 100);
         double beloppEfter2ar = beloppEfter1Ar + rantaAndraAret;
         System.out.println(
                 "Alexander nu har " + beloppEfter2ar + " kr efter två år.");
-
     }
 }
