@@ -2,20 +2,9 @@ import java.util.Scanner;
 
 public class P1_inlU_5 {
     public static void main(String[]args){
-
-        int k;
-        System.out.print("k =");
-
-        //   innit  condition  increment
-        for ( k = 0 ; k < 6 ; k += 2){
-            System.out.print(" " + k);
-        }
-
-
-/*        int x = scanForX();
+        int x = scanForX();
         varArX(x);
          //In what value range is X at? */
-
     }
     public static void dubbelPlusOchMinusExample(){
 
@@ -24,6 +13,17 @@ public class P1_inlU_5 {
         n = ++i * --k;          //prefix, n får värdet 5*6, dvs. 30
 //      m = i++ * k--;          //postfix, m får värdet 4,7, dvs. 28
         System.out.println(n);
+
+    }
+    public static void forLoop(){
+
+        int k;
+        System.out.print("k =");
+
+        //   innit  condition  increment
+        for ( k = 0 ; k < 6 ; k += 2){
+            System.out.print(" " + k);
+        }
 
     }
     public static void whileLoop(){
@@ -36,7 +36,6 @@ public class P1_inlU_5 {
         }
         System.out.print(s);
     }
-
     public static int scanForX(){
         Scanner scan = new Scanner(System.in);
         System.out.print("Skriv ett nummer: ");
