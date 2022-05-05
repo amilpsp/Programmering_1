@@ -17,14 +17,13 @@ public class P1_inlU_5 {
     }
     public static void forLoop(){
 
-        int k;
+        int k; int n = 5;
         System.out.print("k =");
 
         //   innit  condition  increment
         for ( k = 0 ; k < 6 ; k += 2){
             System.out.print(" " + k);
         }
-
     }
     public static void whileLoop(){
         int k = 0;
