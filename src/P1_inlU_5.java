@@ -17,7 +17,15 @@ public class P1_inlU_5 {
          //In what value range is X at? */
 
     }
+    public static void dubbelPlusOchMinusExample(){
 
+        int i, k, m, n;
+        i = 4; k = 7;
+        n = ++i * --k;          //prefix, n får värdet 5*6, dvs. 30
+//      m = i++ * k--;          //postfix, m får värdet 4,7, dvs. 28
+        System.out.println(n);
+
+    }
     public static void whileLoop(){
         int k = 0;
         String s = "k = " ;
