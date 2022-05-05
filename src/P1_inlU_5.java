@@ -20,7 +20,7 @@ public class P1_inlU_5 {
 
     public static void whileLoop(){
         int k = 0;
-        String s = "(While loop) k = " ;
+        String s = "k = " ;
 
         while( k < 6) {
             s = s + " " + k;
