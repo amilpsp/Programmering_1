@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class P1_class11_övning4_3 {
+public class P1_class11_ovning4_3 {
     public static void main(String[]args){
         /*
         * Ett postnummer består som du vet av fem siftror.
