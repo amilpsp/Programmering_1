@@ -24,19 +24,19 @@ public class P1_class5_Losgodis {
         System.out.println("Mata in varans pris inklusive moms: ");
         double prisInklusiveMoms = scan.nextDouble();
 
-        System.out.println("Mata in moms: ");
+        System.out.println("Mata in moms %: ");
         int moms = scan.nextInt();
         double m = 1 + moms/(double)100;
-        double prisUtanMoms = prisInklusiveMoms/m;
+        int prisUtanMoms = (int)(prisInklusiveMoms/m);
 
         if (prisInklusiveMoms>100){ //added on 2022/05/08
             int rabattProcent = 10; //procent
             double rabattVärde = (prisInklusiveMoms * rabattProcent) /100;
-            double rabatteratPris = prisInklusiveMoms - rabattVärde;
+            int rabatteratPris = (int) Math.round(prisInklusiveMoms - rabattVärde);
             System.out.println("Pris inkluderande moms och rabatt: " + rabatteratPris + " kr.");
         }
 
-        System.out.println("Pris utan moms eller rabatt: " + prisUtanMoms);
+        System.out.println("Pris utan moms eller rabatt: " + prisUtanMoms + " kr.");
 
     }//main
 }//class
