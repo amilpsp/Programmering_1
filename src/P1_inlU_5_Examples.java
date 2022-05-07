@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class P1_inlU_5 {
+public class P1_inlU_5_Examples {
     public static void main(String[]args){
         int x = scanForX();
         varArX(x);

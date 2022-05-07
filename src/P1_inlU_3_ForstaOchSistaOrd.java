@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class P1_inlU_3_forstaOchSistaOrd {
+public class P1_inlU_3_ForstaOchSistaOrd {
     public static void main(String[]args){
 
         Scanner scanMening = new Scanner(System.in);                //Instanciating a Scanner
