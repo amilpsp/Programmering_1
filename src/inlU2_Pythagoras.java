@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class P1_inlU_2_Pythagoras {
+public class inlU2_Pythagoras {
     public static void main(String[]args){
         Scanner sideLengthInput = new Scanner(System.in);
 

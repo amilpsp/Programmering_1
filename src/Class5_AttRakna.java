@@ -1,4 +1,4 @@
-public class P1_class5_AttRakna {
+public class Class5_AttRakna {
     public static void main(String[]args){
         int i;
         double d;

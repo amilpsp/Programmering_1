@@ -1,4 +1,4 @@
-public class P1_inlU_6_ {
+public class inlU6_ {
     public static void main(String[]args){
 
     }

@@ -1,4 +1,4 @@
-public class P1_inlU_4_AlexandersSparkonto {
+public class inlU4_AlexandersSparkonto {
     public static void main(String[]args){
         int originalBelopp = 8000;          //i kr
         double rantaProcentPerAr = 2.5;     //procent

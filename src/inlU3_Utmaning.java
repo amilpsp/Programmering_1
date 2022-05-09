@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class P1_inlU_3_Utmaning {
+public class inlU3_Utmaning {
     public static void main(String[]args){
         Scanner scanTreSiffror = new Scanner(System.in);
 

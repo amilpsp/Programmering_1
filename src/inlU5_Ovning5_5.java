@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class P1_inlU_5_Ovning5_5 {
+public class inlU5_Ovning5_5 {
     public static void main(String[]args){
         Scanner antalRaderScan = new Scanner(System.in);
 

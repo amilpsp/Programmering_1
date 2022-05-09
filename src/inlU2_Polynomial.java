@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class p1_inlU_2_Polynomial {
+public class inlU2_Polynomial {
     public static void main(String[]args){
         double p = 3.0;
         double q = 1.0;
