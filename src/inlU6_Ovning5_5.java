@@ -4,7 +4,7 @@ import java.util.Scanner;
 // extra spaces after the "j"
 // indexes start at 0 in arrays, may be best to rename for clarity.
 
-public class inlU5_Ovning5_5 {
+public class inlU6_Ovning5_5 {
     public static void main(String[]args){
         Scanner antalRaderScan = new Scanner(System.in);
 
