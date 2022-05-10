@@ -1,4 +1,8 @@
 import java.util.Scanner;
+//SANDER'S COMMENTARY:
+// if you put something in that isn't an integer it crashes
+// extra spaces after the "j"
+// indexes start at 0 in arrays, may be best to rename for clarity.
 
 public class inlU5_Ovning5_5 {
     public static void main(String[]args){
@@ -18,4 +22,4 @@ public class inlU5_Ovning5_5 {
             System.out.println();
         }
     }
-}//
+}
