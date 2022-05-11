@@ -20,22 +20,27 @@ public class inlU7_AverageOfMensAndWomensAges {
 
             int personsAge = requestAge();
             if (personsGender == 'W'){
-                womenSumOfAllAges += personsAge;
-            }
+                womenSumOfAllAges += personsAge;    //Adding the individual's age to the
+            }                                       //sum of their respective group.
             else {
                 menSumOfAllAges += personsAge;
             }
-            registerAnother = continueQuestion();
-        }
+            registerAnother = continueQuestion();   //Asks the user if they want to add another person
+        }                                           //if the user says 'no' registerAnother = false
 
         System.out.println("Women's average age is " + womenSumOfAllAges / numberOfWomen + " years old.");
         System.out.println("Men's average age is " + menSumOfAllAges / numberOfMen + " year old.");
     }
 
-    public static char requestNewPersonsGender() { //This method was made so that if an invalid
-        char womanOrManAnswer = 0 ;                // input is entered the program will have the
-        boolean validInput = false;                // user try again instead of just ending.
-
+    public static char requestNewPersonsGender() {
+        /*This method asks the user if the individual they're registering
+        is a woman 'W' or a man 'M' by having them type one of those letters
+        in the terminal; then, it trims the input, makes it uppercase so
+        that the user doesn't have to worry about case sensitivity, checks if
+        it's valid input (if it isn't, it has the user try again until it is),
+        and returns it*/
+        char womanOrManAnswer = 0 ;
+        boolean validInput = false;
         Scanner genderScan = new Scanner(System.in);
 
         while (!validInput){
@@ -58,9 +63,11 @@ public class inlU7_AverageOfMensAndWomensAges {
         return womanOrManAnswer;
     }//request new persons gender
 
-    public static int requestAge(){                 //This method was made so that if an invalid
-        Scanner ageScan =new Scanner(System.in);    //input is entered the program will have the
-        int personsAge = 0;                         //user try again instead of just ending.
+    public static int requestAge(){
+        /*This method asks the user to type in an integer, makes sure that the input
+        is valid (otherwise it has the user try again until it is), and returns that number.*/
+        Scanner ageScan =new Scanner(System.in);
+        int personsAge = 0;
         System.out.print("What's their age? ");
 
         try {
@@ -75,29 +82,35 @@ public class inlU7_AverageOfMensAndWomensAges {
     }//request age
 
     public static boolean continueQuestion(){
-        char yesOrNoAnswer = 0;
+        /*This method asks the user if they want to register the information
+        of another individual. It makes them choose between yes 'Y' or no 'N'
+        by typing one of those letters in the terminal; then, it trims the input,
+        makes it uppercase so that the user doesn't have to worry
+        about case sensitivity, checks if it's valid input (if it isn't,
+        it has the user try again until it is), and returns it*/
+        char answer = 0;
         boolean validInput = false;
 
-        Scanner genderScan = new Scanner(System.in);
+        Scanner yesOrNoScan = new Scanner(System.in);
         while (!validInput){
             try {
                 System.out.println("Want to add another individual's information? (y/n) ");
-                yesOrNoAnswer = genderScan.next().trim().toUpperCase().charAt(0);
-                if (yesOrNoAnswer == 'Y' || yesOrNoAnswer == 'N') {
+                answer = yesOrNoScan.next().trim().toUpperCase().charAt(0);
+                if (answer == 'Y' || answer == 'N') {
                     validInput = true;
                 }
                 else {
                     System.out.println("Invalid answer! You can only answer 'Y' or 'N'");
-                    genderScan.nextLine();
+                    yesOrNoScan.nextLine();
                 }
             }
             catch (Exception e){
                 System.out.println("Invalid answer! Error message: " + e);
-                genderScan.nextLine();
+                yesOrNoScan.nextLine();
             }
         }
 
-        if (yesOrNoAnswer == 'N'){
+        if (answer == 'N'){
             return false;
         }
         else{
