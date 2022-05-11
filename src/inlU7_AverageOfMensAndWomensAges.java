@@ -28,8 +28,10 @@ public class inlU7_AverageOfMensAndWomensAges {
             registerAnother = continueQuestion();   //Asks the user if they want to add another person
         }                                           //if the user says 'no' registerAnother = false
 
-        System.out.println("Women's average age is " + womenSumOfAllAges / numberOfWomen + " years old.");
-        System.out.println("Men's average age is " + menSumOfAllAges / numberOfMen + " year old.");
+        System.out.println(
+                "Women's average age is " + womenSumOfAllAges / numberOfWomen + " years old.");
+        System.out.println(
+                "Men's average age is " + menSumOfAllAges / numberOfMen + " year old.");
     }
 
     public static char requestNewPersonsGender() {
