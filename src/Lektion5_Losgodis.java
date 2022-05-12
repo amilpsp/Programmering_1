@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Class5_Losgodis {
+public class Lektion5_Losgodis {
     public static void main(String[] args) {
 
         var scan = new Scanner(System.in);

@@ -1,4 +1,4 @@
-public class Class4_KlassString {
+public class Lektion4_KlassString {
     public static void main(String[]args){
         //träna på att skriva olika string klass metoder
     //length();

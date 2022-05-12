@@ -1,4 +1,4 @@
-public class Class2_Summa {
+public class Lektion2_Summa {
     public static void main(String[]args){
 
 //DECLARING variables and assigning VALUES

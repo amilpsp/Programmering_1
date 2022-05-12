@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Class6_KlotAreaOchVolym {
+public class Lektion6_KlotAreaOchVolym {
 
     public static void main(String[]args){
 

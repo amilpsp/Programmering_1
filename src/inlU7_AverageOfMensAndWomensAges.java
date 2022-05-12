@@ -11,8 +11,8 @@ public class inlU7_AverageOfMensAndWomensAges {
 
         while(registerAnother){
             char personsGender = requestNewPersonsGender();
-            if (personsGender == 'W'){  //Increasing the number of men or women by 1
-                numberOfWomen++;        //depending on the user's input.
+            if (personsGender == 'W'){      //Increasing the number of men or women by 1
+                numberOfWomen++;            //depending on the user's input.
             }
             else {
                 numberOfMen++;
@@ -63,7 +63,7 @@ public class inlU7_AverageOfMensAndWomensAges {
             }
         }
         return womanOrManAnswer;
-    }//request new persons gender
+    }//End of custom method: request new persons gender
 
     public static int requestAge(){
         /*This method asks the user to type in an integer, makes sure that the input
@@ -81,7 +81,7 @@ public class inlU7_AverageOfMensAndWomensAges {
         }
         System.out.println();
         return personsAge;
-    }//request age
+    }//End of custom method: request age
 
     public static boolean continueQuestion(){
         /*This method asks the user if they want to register the information
@@ -119,5 +119,5 @@ public class inlU7_AverageOfMensAndWomensAges {
             return true;
         }
 
-    }// continue?
+    }//end of custom method: Continue?
 }

@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Class5_MaxTemperatur {
+public class Lektion5_MaxTemperatur {
     public static void main(String[]args){
         Scanner scan= new Scanner(System.in);
 
