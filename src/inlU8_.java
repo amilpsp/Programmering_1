@@ -1,4 +1,10 @@
 import java.util.Scanner;
+
+/* FIX SCREENCAPPED BUG AND DEBUG PROPPERLY TOMORROW!
+* Features to add:
+* Actual stratum boundaries
+* 65 year old condition
+* Fix if the input breaks with commas instead of points*/
 public class inlU8_ {
     public static void main(String[]args){
     boolean calculateAnother=true;
