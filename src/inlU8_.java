@@ -1,7 +1,6 @@
 import java.util.Scanner;
 
-/* FIX SCREENCAPPED BUG AND DEBUG PROPPERLY TOMORROW!
-* Features to add:
+/* * Features to add:
 * Actual stratum boundaries
 * 65 year old condition
 * Fix if the input breaks with commas instead of points*/
@@ -28,7 +27,7 @@ public class inlU8_ {
             }
             System.out.println("You must pay " + taxAmount + "kr in taxes this year.");
         }
-        calculateAnother=continueQuestion();
+        calculateAnother= yesOrNoQuestion();
     }//end of while loop
     }//end of main
     public static double requestIncome(){ //FIX IF IT BREAKS WITH COMAS OR POINTS
@@ -42,11 +41,11 @@ public class inlU8_ {
         }
         catch (Exception e) {
             System.out.println("Invalid income, please enter a number");
+            requestIncome();
         }
-        System.out.println();
         return preTaxIncome;
     }//FIX IF IT BREAKS WITH COMAS OR POINTS
-    public static boolean continueQuestion(){
+    public static boolean yesOrNoQuestion(){
         /*This method asks the user if they want to register the information
         of another individual. It makes them choose between yes 'Y' or no 'N'
         by typing one of those letters in the terminal; then, it trims the input,
@@ -59,6 +58,7 @@ public class inlU8_ {
         Scanner yesOrNoScan = new Scanner(System.in);
         while (!validInput){
             try {
+                System.out.println();
                 System.out.println("Want to calculate someone else's taxes? (y/n) ");
                 answer = yesOrNoScan.next().trim().toUpperCase().charAt(0);
                 if (answer == 'Y' || answer == 'N') {
