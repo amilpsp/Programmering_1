@@ -5,47 +5,51 @@ import java.util.Scanner;
 * Fix if the input breaks with commas instead of points*/
 public class FinalInlU_TaxCalculator {
     public static void main(String[]args){
-    boolean calculateAnother=true;
+//Boolean related to the function that determines whether or not the user wants to calculate someone else's taxes.
+    boolean calculateAnother= true;
     int preTaxIncome;
     int incomeAfterDeduction;
-    int basicDeduction= 13200;
-    int firstStratBoundary = 438900;   //Ifrån 2017:s exempel i instruktionerna.
-    int secondStratBoundary= 638500;
+    int basicDeduction      = 13200;
+    int firstStratBoundary  = 438900;    //From the 2017 example in the instructions..
+    int secondStratBoundary = 638500;
     int taxAmount;
-    int[] stratBoundaries= new int []{ firstStratBoundary, secondStratBoundary };
+    int[] taxBrackets= new int []{ firstStratBoundary, secondStratBoundary };
         //I made an array so that I could loop through it when I add more stratum boundaries.
+
     while (calculateAnother){
 
         preTaxIncome = requestIncome();
 
         incomeAfterDeduction = preTaxIncome - basicDeduction;
-        if(incomeAfterDeduction<basicDeduction){
+        if( preTaxIncome <= basicDeduction ){
             System.out.println("You don't have to pay any tax on it.");
         }
         else{
-            taxAmount=calculateTotalTax(incomeAfterDeduction,stratBoundaries);
+            taxAmount=calculateTotalTax(incomeAfterDeduction,taxBrackets);
             System.out.println("You must pay " + taxAmount + " kr in taxes this year.");
         }
         calculateAnother=continueQuestion();
     }//end of while loop
     }//end of main
     public static int calculateTotalTax(int incomeAfterDeduction, int[] stratBoundaries){
-        int taxPercentage;
+        int taxPercentage=20;
         int amountInStratum = incomeAfterDeduction;
-        int remainder;
+        int remainder = 1;
         int taxHere;
         int totalTaxToPay=0;
         for (int i = 0; i<stratBoundaries.length; i++){
-            for (taxPercentage = 20; taxPercentage == 25; taxPercentage +=5 ){
+            while (taxPercentage<=25) {
                 //This is a loop so that I can put more and more tax brackets in later.
                 remainder = stratBoundaries[i] - amountInStratum;
-                while(remainder > 0){
+                while (remainder > 0) {
                     amountInStratum -= remainder;
                 }
-                taxHere = amountInStratum * (taxPercentage/100);
+
+                taxHere = amountInStratum * (taxPercentage / 100);
+
                 totalTaxToPay += taxHere;
                 amountInStratum = remainder;
-
+                taxPercentage += 5;
             }
         }
         return totalTaxToPay;
