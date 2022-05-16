@@ -1,9 +1,7 @@
 import java.util.Scanner;
 
-/* FIX SCREENCAPPED BUG AND DEBUG PROPPERLY TOMORROW!
-* Features to add:
+/* Features to add:
 * Actual stratum boundaries
-* 65 year old condition
 * Fix if the input breaks with commas instead of points*/
 public class inlU8_ {
     public static void main(String[]args){
@@ -17,7 +15,7 @@ public class inlU8_ {
         preTaxIncome = requestIncome();
 
         if(preTaxIncome<lowStratBoundary){
-            System.out.println(preTaxIncome+"Your yearly income is below the lower stratum boundary set by Skatteverket, so, you don't have to pay tax on it.");
+            System.out.println("Your yearly income is below the lower stratum boundary set by Skatteverket, so, you don't have to pay tax on it.");
             calculateAnother=continueQuestion();
         }
         else{
@@ -42,10 +40,10 @@ public class inlU8_ {
             return preTaxIncome;
         }
         catch (Exception e) {
+            int preTaxIncome1;
             System.out.println("Invalid income, please enter a number");
-            System.out.println();
-            requestIncome();
-            return preTaxIncome;
+            preTaxIncome1 = requestIncome();
+            return preTaxIncome1;
         }
     }//FIX IF IT BREAKS WITH COMAS OR POINTS
     public static boolean continueQuestion(){
