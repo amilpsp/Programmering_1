@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class inlU8_ {
     public static void main(String[]args){
     boolean calculateAnother=true;
-    double preTaxIncome;
+    int preTaxIncome;
     int lowStratBoundary = 65500;
     int highStratBoundary= 6000000;
     int taxAmount;
@@ -17,7 +17,8 @@ public class inlU8_ {
         preTaxIncome = requestIncome();
 
         if(preTaxIncome<lowStratBoundary){
-            System.out.println("Your yearly income is below the lower stratum boundary set by Skatteverket, so, you don't have to pay tax on it.");
+            System.out.println(preTaxIncome+"Your yearly income is below the lower stratum boundary set by Skatteverket, so, you don't have to pay tax on it.");
+            calculateAnother=continueQuestion();
         }
         else{
             if (preTaxIncome>=highStratBoundary) {
@@ -26,25 +27,26 @@ public class inlU8_ {
             else{
             taxAmount = (int) (preTaxIncome * 0.2);
             }
-            System.out.println("You must pay " + taxAmount + "kr in taxes this year.");
+            System.out.println("You must pay " + taxAmount + " kr in taxes this year.");
+            calculateAnother=continueQuestion();
         }
-        calculateAnother=continueQuestion();
     }//end of while loop
     }//end of main
-    public static double requestIncome(){ //FIX IF IT BREAKS WITH COMAS OR POINTS
+    public static int requestIncome(){ //FIX IF IT BREAKS WITH COMAS OR POINTS
         Scanner incomeScan =new Scanner(System.in);
-        double preTaxIncome = 0;
+        int preTaxIncome = 0;
         System.out.print("How much did you make last year? ");
 
         try {
-            preTaxIncome = incomeScan.nextDouble();
+            preTaxIncome = incomeScan.nextInt();
             return preTaxIncome;
         }
         catch (Exception e) {
             System.out.println("Invalid income, please enter a number");
+            System.out.println();
+            requestIncome();
+            return preTaxIncome;
         }
-        System.out.println();
-        return preTaxIncome;
     }//FIX IF IT BREAKS WITH COMAS OR POINTS
     public static boolean continueQuestion(){
         /*This method asks the user if they want to register the information
