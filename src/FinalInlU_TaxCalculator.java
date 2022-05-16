@@ -9,11 +9,11 @@ public class FinalInlU_TaxCalculator {
     boolean calculateAnother= true;
     int preTaxIncome;
     int incomeAfterDeduction;
-    int basicDeduction      = 13200;
+    int basicDeduction      = 13200 ;
     int firstStratBoundary  = 438900;    //From the 2017 example in the instructions..
     int secondStratBoundary = 638500;
     int taxAmount;
-    int[] taxBrackets= new int []{ firstStratBoundary, secondStratBoundary };
+    int[] taxBrackets = new int []{ firstStratBoundary, secondStratBoundary };
         //I made an array so that I could loop through it when I add more stratum boundaries.
 
     while (calculateAnother){
@@ -34,14 +34,14 @@ public class FinalInlU_TaxCalculator {
     public static int calculateTotalTax(int incomeAfterDeduction, int[] stratBoundaries){
         int taxPercentage=20;
         int amountInStratum = incomeAfterDeduction;
-        int remainder = 1;
+        int remainder;
         int taxHere;
-        int totalTaxToPay=0;
-        for (int i = 0; i<stratBoundaries.length; i++){
+        int totalTaxToPay = 0;
+        for (int i = 0; i<stratBoundaries.length; i++ ){
             while (taxPercentage<=25) {
                 //This is a loop so that I can put more and more tax brackets in later.
                 remainder = stratBoundaries[i] - amountInStratum;
-                while (remainder > 0) {
+                if (remainder > 0) {
                     amountInStratum -= remainder;
                 }
 
@@ -50,8 +50,11 @@ public class FinalInlU_TaxCalculator {
                 totalTaxToPay += taxHere;
                 amountInStratum = remainder;
                 taxPercentage += 5;
+                System.out.println(totalTaxToPay);
             }
+            System.out.println(totalTaxToPay);
         }
+        System.out.println(totalTaxToPay);
         return totalTaxToPay;
     }
     public static int requestIncome(){ //FIX IF IT BREAKS WITH COMAS OR POINTS
