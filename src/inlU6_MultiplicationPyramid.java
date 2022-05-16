@@ -24,7 +24,7 @@ public class inlU6_Ovning5_5 {
                     System.out.print(j);
             }
             if (i != antalRader)
-            System.out.println();
+                System.out.println();
         }
     }
 }
