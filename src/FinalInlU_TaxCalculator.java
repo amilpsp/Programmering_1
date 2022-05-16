@@ -7,16 +7,19 @@ public class inlU8_ {
     public static void main(String[]args){
     boolean calculateAnother=true;
     int preTaxIncome;
-    int lowStratBoundary = 65500;
-    int highStratBoundary= 6000000;
+    int lowStratBoundary = 66000;   //Ifrån 2017:s exempel i instruktionerna.
+    int highStratBoundary= 172500;
     int taxAmount;
+    int basicDeduction = 13100;
+
 
     while (calculateAnother){
         preTaxIncome = requestIncome();
+        if (preTaxIncome>lowStratBoundary)
+            preTaxIncome -= basicDeduction;
 
         if(preTaxIncome<lowStratBoundary){
             System.out.println("Your yearly income is below the lower stratum boundary set by Skatteverket, so, you don't have to pay tax on it.");
-            calculateAnother=continueQuestion();
         }
         else{
             if (preTaxIncome>=highStratBoundary) {
@@ -26,13 +29,13 @@ public class inlU8_ {
             taxAmount = (int) (preTaxIncome * 0.2);
             }
             System.out.println("You must pay " + taxAmount + " kr in taxes this year.");
-            calculateAnother=continueQuestion();
         }
+        calculateAnother=continueQuestion();
     }//end of while loop
     }//end of main
     public static int requestIncome(){ //FIX IF IT BREAKS WITH COMAS OR POINTS
         Scanner incomeScan =new Scanner(System.in);
-        int preTaxIncome = 0;
+        int preTaxIncome;
         System.out.print("How much did you make last year? ");
 
         try {
