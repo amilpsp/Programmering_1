@@ -8,35 +8,48 @@ public class FinalInlU_TaxCalculator {
     boolean calculateAnother=true;
     int preTaxIncome;
     int incomeAfterDeduction;
-    int basicDeduction = 13100;
-    int lowStratBoundary = 13200 * 5;   //Ifrån 2017:s exempel i instruktionerna.
-    int highStratBoundary= 34500 * 5;
+    int basicDeduction= 13200;
+    int firstStratBoundary = 438900;   //Ifrån 2017:s exempel i instruktionerna.
+    int secondStratBoundary= 638500;
     int taxAmount;
-
-
+    int[] stratBoundaries= new int []{ firstStratBoundary, secondStratBoundary };
+        //I made an array so that I could loop through it when I add more stratum boundaries.
     while (calculateAnother){
 
         preTaxIncome = requestIncome();
-        if (preTaxIncome>lowStratBoundary)
-            incomeAfterDeduction = preTaxIncome - basicDeduction;
-        else
-            incomeAfterDeduction = preTaxIncome;
 
-        if(incomeAfterDeduction<lowStratBoundary){
-            System.out.println("Your yearly income is below the lower stratum boundary set by Skatteverket, so, you don't have to pay tax on it.");
+        incomeAfterDeduction = preTaxIncome - basicDeduction;
+        if(incomeAfterDeduction<basicDeduction){
+            System.out.println("You don't have to pay any tax on it.");
         }
         else{
-            if (incomeAfterDeduction>=highStratBoundary) {
-            taxAmount = (int) (incomeAfterDeduction * 0.25);
-             }
-            else{
-            taxAmount = (int) (incomeAfterDeduction * 0.2);
-            }
+            taxAmount=calculateTotalTax(incomeAfterDeduction,stratBoundaries);
             System.out.println("You must pay " + taxAmount + " kr in taxes this year.");
         }
         calculateAnother=continueQuestion();
     }//end of while loop
     }//end of main
+    public static int calculateTotalTax(int incomeAfterDeduction, int[] stratBoundaries){
+        int taxPercentage;
+        int amountInStratum = incomeAfterDeduction;
+        int remainder;
+        int taxHere;
+        int totalTaxToPay=0;
+        for (int i = 0; i<stratBoundaries.length; i++){
+            for (taxPercentage = 20; taxPercentage == 25; taxPercentage +=5 ){
+                //This is a loop so that I can put more and more tax brackets in later.
+                remainder = stratBoundaries[i] - amountInStratum;
+                while(remainder > 0){
+                    amountInStratum -= remainder;
+                }
+                taxHere = amountInStratum * (taxPercentage/100);
+                totalTaxToPay += taxHere;
+                amountInStratum = remainder;
+
+            }
+        }
+        return totalTaxToPay;
+    }
     public static int requestIncome(){ //FIX IF IT BREAKS WITH COMAS OR POINTS
         Scanner incomeScan =new Scanner(System.in);
         int preTaxIncome;
@@ -52,7 +65,7 @@ public class FinalInlU_TaxCalculator {
             preTaxIncome1 = requestIncome();
             return preTaxIncome1;
         }
-    }//FIX IF IT BREAKS WITH COMAS OR POINTS
+    }
     public static boolean continueQuestion(){
         /*This method asks the user if they want to register the information
         of another individual. It makes them choose between yes 'Y' or no 'N'
