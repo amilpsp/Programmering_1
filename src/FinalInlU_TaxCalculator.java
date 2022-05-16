@@ -3,30 +3,34 @@ import java.util.Scanner;
 /* Features to add:
 * Actual stratum boundaries
 * Fix if the input breaks with commas instead of points*/
-public class inlU8_ {
+public class FinalInlU_TaxCalculator {
     public static void main(String[]args){
     boolean calculateAnother=true;
     int preTaxIncome;
-    int lowStratBoundary = 66000;   //Ifrån 2017:s exempel i instruktionerna.
-    int highStratBoundary= 172500;
-    int taxAmount;
+    int incomeAfterDeduction;
     int basicDeduction = 13100;
+    int lowStratBoundary = 13200 * 5;   //Ifrån 2017:s exempel i instruktionerna.
+    int highStratBoundary= 34500 * 5;
+    int taxAmount;
 
 
     while (calculateAnother){
+
         preTaxIncome = requestIncome();
         if (preTaxIncome>lowStratBoundary)
-            preTaxIncome -= basicDeduction;
+            incomeAfterDeduction = preTaxIncome - basicDeduction;
+        else
+            incomeAfterDeduction = preTaxIncome;
 
-        if(preTaxIncome<lowStratBoundary){
+        if(incomeAfterDeduction<lowStratBoundary){
             System.out.println("Your yearly income is below the lower stratum boundary set by Skatteverket, so, you don't have to pay tax on it.");
         }
         else{
-            if (preTaxIncome>=highStratBoundary) {
-            taxAmount = (int) (preTaxIncome * 0.25);
+            if (incomeAfterDeduction>=highStratBoundary) {
+            taxAmount = (int) (incomeAfterDeduction * 0.25);
              }
             else{
-            taxAmount = (int) (preTaxIncome * 0.2);
+            taxAmount = (int) (incomeAfterDeduction * 0.2);
             }
             System.out.println("You must pay " + taxAmount + " kr in taxes this year.");
         }
@@ -77,13 +81,6 @@ public class inlU8_ {
                 yesOrNoScan.nextLine();
             }
         }
-
-        if (answer == 'N'){
-            return false;
-        }
-        else{
-            return true;
-        }
-
+        return answer != 'N';
     }
 }
