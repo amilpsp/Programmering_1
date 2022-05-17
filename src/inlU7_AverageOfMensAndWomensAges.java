@@ -29,9 +29,9 @@ public class inlU7_AverageOfMensAndWomensAges {
         }                                           //if the user says 'no' registerAnother = false
 
         System.out.println(
-                "Women's average age is " + womenSumOfAllAges / numberOfWomen + " years old.");
+                "There's " + numberOfWomen + "women and their average age is " + womenSumOfAllAges / numberOfWomen + " years old.");
         System.out.println(
-                "Men's average age is " + menSumOfAllAges / numberOfMen + " year old.");
+                "There's " + numberOfMen + "men and their average age is " + menSumOfAllAges / numberOfMen + " year old.");
     }
 
     public static char requestNewPersonsGender() {
