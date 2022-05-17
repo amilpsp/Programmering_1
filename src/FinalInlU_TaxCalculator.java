@@ -5,15 +5,16 @@ import java.util.Scanner;
 * Fix if the input breaks with commas instead of points*/
 public class FinalInlU_TaxCalculator {
     public static void main(String[]args){
-    boolean calculateAnother =   true;
-    boolean seniorCitizen    =  false;
-    int basicDeductionSenior =  78000;
-    int basicDeduction       =  14200;
-    int StratBoundary        = 540700; /*In the Skatteverket page it said that this year there's
-                                        only one skiktgräns, from where one pays 20%*/
-    int preTaxIncome;
-    int incomeAfterDeduction;
-    int taxAmount;
+    boolean calculateAnother   =     true;
+    boolean  seniorCitizen     =    false;
+    int   basicDeductionSenior =    78000;
+    int      basicDeduction    =    14200;
+    int        skiktgrans      =   540700;
+                                                /*In the Skatteverket page it said that this year there's
+                                                  only one skiktgräns, from where one pays 20%*/
+    int       preTaxIncome;
+    int   incomeAfterDeduction;
+    int        taxAmount;
 
 
     while (calculateAnother){
@@ -33,11 +34,12 @@ public class FinalInlU_TaxCalculator {
 
 
 
-        calculateAnother=continueQuestion();
-    }//end of while loop
+        calculateAnother = continueQuestion();
+        }//end of while loop
+
     }//end of main
     public static int calculateTotalTax(int incomeAfterDeduction){
-        int taxPercentage = 20;
+        int taxPercentage   = 20;
         int amountInStratum = incomeAfterDeduction;
 
 
@@ -50,8 +52,10 @@ public class FinalInlU_TaxCalculator {
     }
     public static int requestIncome(){
         Scanner incomeScan =new Scanner(System.in);
-        int preTaxIncome;
-        System.out.print("How much did you make last year? ");
+        int   preTaxIncome;
+
+        System.out.print(
+                "How much did you make last year? ");
 
         try {
             preTaxIncome = incomeScan.nextInt();
@@ -59,18 +63,21 @@ public class FinalInlU_TaxCalculator {
         }
         catch (Exception e) {
             int preTaxIncome1;
-            System.out.println("Invalid income, please enter a number");
+            System.out.println(
+                "Invalid income, please enter a number");
             preTaxIncome1 = requestIncome();
             return preTaxIncome1;
         }
+
     }
     public static boolean overOrUnder65(){
 
-        char answer = 0;
-        boolean validInput = false;
+        Scanner  yesOrNoScan = new Scanner(System.in);
+        char      answer     = 0;
+        boolean validInput   = false;
 
-        Scanner yesOrNoScan = new Scanner(System.in);
         while (!validInput){
+
             try {
                 System.out.println(
                             "Has this person yet turned 65 years of age during the start of the year? (y/n) ");
@@ -97,10 +104,10 @@ public class FinalInlU_TaxCalculator {
     }//end of custom method: Continue?
     public static boolean continueQuestion(){
 
-        char answer = 0;
-        boolean validInput = false;
+        Scanner yesOrNoScan  = new Scanner(System.in);
+        char      answer     =     0;
+        boolean validInput   = false;
 
-        Scanner yesOrNoScan = new Scanner(System.in);
         while (!validInput){
             try {
                 System.out.println(
