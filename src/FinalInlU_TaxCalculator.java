@@ -5,68 +5,50 @@ import java.util.Scanner;
 * Fix if the input breaks with commas instead of points*/
 public class FinalInlU_TaxCalculator {
     public static void main(String[]args){
-//Boolean related to the function that determines whether or not the user wants to calculate someone else's taxes.
-    boolean calculateAnother= true;
+    boolean calculateAnother =   true;
+    boolean seniorCitizen    =  false;
+    int basicDeductionSenior =  78000;
+    int basicDeduction       =  14200;
+    int StratBoundary        = 540700; /*In the Skatteverket page it said that this year there's
+                                        only one skiktgräns, from where one pays 20%*/
     int preTaxIncome;
     int incomeAfterDeduction;
-    int basicDeduction      = 13200 ;
-    int firstStratBoundary  = 438900;    //From the 2017 example in the instructions..
-    int secondStratBoundary = 638500;
     int taxAmount;
-    int[] taxBrackets = new int []{ firstStratBoundary, secondStratBoundary };
-        //I made an array so that I could loop through it when I add more stratum boundaries.
+
 
     while (calculateAnother){
 
-        preTaxIncome = requestIncome();
+        //Method calls for user input.
+        preTaxIncome  = requestIncome();
+        seniorCitizen = overOrUnder65();
 
-        incomeAfterDeduction = preTaxIncome - basicDeduction;
-        if( preTaxIncome <= basicDeduction ){
-            System.out.println("You don't have to pay any tax on it.");
-        }
-        else{
-            taxAmount=calculateTotalTax(incomeAfterDeduction,taxBrackets);
-            System.out.println("You must pay " + taxAmount + " kr in taxes this year.");
-        }
+        if (seniorCitizen)
+            incomeAfterDeduction = preTaxIncome - basicDeductionSenior;
+        else
+            incomeAfterDeduction = preTaxIncome - basicDeduction;
+
+
+
+
+
+
+
         calculateAnother=continueQuestion();
     }//end of while loop
     }//end of main
-    public static int calculateTotalTax(int incomeAfterDeduction, int[] stratBoundaries){
-        int taxPercentage=20;
+    public static int calculateTotalTax(int incomeAfterDeduction){
+        int taxPercentage = 20;
         int amountInStratum = incomeAfterDeduction;
-        int remainder=amountInStratum;
-        int taxHere;
-        int totalTaxToPay = 0;
-        //for (int i = 0; i<stratBoundaries.length; i++ )
-        for (int i = 0; i<stratBoundaries.length; i++ ){
-            while (taxPercentage<=25 && amountInStratum>0) {
-                //This is a loop so that I can put more and more tax brackets in later (for a more accurate calculator).
-                remainder = amountInStratum - stratBoundaries[i] ;
-                if (remainder > 0) {
-                    amountInStratum -= remainder;
-                }
 
-                taxHere = amountInStratum * taxPercentage / 100;
 
-                totalTaxToPay += taxHere;
-                if (remainder>0){
-                    amountInStratum = remainder;
-                    taxPercentage += 5;
-                }
-                else {
-                    break;
-                }
-                System.out.println(totalTaxToPay);
-            }
-            if (remainder<0) {
-                break;
-            }
-            System.out.println(totalTaxToPay);
-        }
-        System.out.println(totalTaxToPay);
-        return totalTaxToPay;
+
+
+
+
+
+
     }
-    public static int requestIncome(){ //FIX IF IT BREAKS WITH COMAS OR POINTS
+    public static int requestIncome(){
         Scanner incomeScan =new Scanner(System.in);
         int preTaxIncome;
         System.out.print("How much did you make last year? ");
@@ -82,32 +64,61 @@ public class FinalInlU_TaxCalculator {
             return preTaxIncome1;
         }
     }
-    public static boolean continueQuestion(){
-        /*This method asks the user if they want to register the information
-        of another individual. It makes them choose between yes 'Y' or no 'N'
-        by typing one of those letters in the terminal; then, it trims the input,
-        makes it uppercase so that the user doesn't have to worry
-        about case sensitivity, checks if it's valid input (if it isn't,
-        it has the user try again until it is), and returns it*/
+    public static boolean overOrUnder65(){
+
         char answer = 0;
         boolean validInput = false;
 
         Scanner yesOrNoScan = new Scanner(System.in);
         while (!validInput){
             try {
-                System.out.println("Want to calculate someone else's taxes? (y/n) ");
+                System.out.println(
+                            "Has this person yet turned 65 years of age during the start of the year? (y/n) ");
+                answer = yesOrNoScan.next().trim().toUpperCase().charAt(0);
+
+                if (answer == 'Y' || answer == 'N')
+                    validInput = true;
+
+                else {
+                    System.out.println(
+                            "Invalid answer! You can only answer 'Y' or 'N'");
+                    overOrUnder65();
+                }
+            }
+            catch (Exception e){
+                System.out.println(
+                            "Invalid answer! Error message: " + e);
+                overOrUnder65();
+            }
+        }
+
+        return answer != 'N';
+
+    }//end of custom method: Continue?
+    public static boolean continueQuestion(){
+
+        char answer = 0;
+        boolean validInput = false;
+
+        Scanner yesOrNoScan = new Scanner(System.in);
+        while (!validInput){
+            try {
+                System.out.println(
+                        "Want to calculate someone else's taxes? (y/n) ");
                 answer = yesOrNoScan.next().trim().toUpperCase().charAt(0);
                 if (answer == 'Y' || answer == 'N') {
                     validInput = true;
                 }
                 else {
-                    System.out.println("Invalid answer! You can only answer 'Y' or 'N'");
-                    yesOrNoScan.nextLine();
+                    System.out.println(
+                        "Invalid answer! You can only answer 'Y' or 'N'");
+                    continueQuestion();
                 }
             }
             catch (Exception e){
-                System.out.println("Invalid answer! Error message: " + e);
-                yesOrNoScan.nextLine();
+                System.out.println(
+                        "Invalid answer! Error message: " + e);
+                continueQuestion();
             }
         }
         return answer != 'N';
