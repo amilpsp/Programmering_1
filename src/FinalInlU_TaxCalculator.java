@@ -34,23 +34,32 @@ public class FinalInlU_TaxCalculator {
     public static int calculateTotalTax(int incomeAfterDeduction, int[] stratBoundaries){
         int taxPercentage=20;
         int amountInStratum = incomeAfterDeduction;
-        int remainder;
+        int remainder=amountInStratum;
         int taxHere;
         int totalTaxToPay = 0;
+        //for (int i = 0; i<stratBoundaries.length; i++ )
         for (int i = 0; i<stratBoundaries.length; i++ ){
-            while (taxPercentage<=25) {
-                //This is a loop so that I can put more and more tax brackets in later.
-                remainder = stratBoundaries[i] - amountInStratum;
+            while (taxPercentage<=25 && amountInStratum>0) {
+                //This is a loop so that I can put more and more tax brackets in later (for a more accurate calculator).
+                remainder = amountInStratum - stratBoundaries[i] ;
                 if (remainder > 0) {
                     amountInStratum -= remainder;
                 }
 
-                taxHere = amountInStratum * (taxPercentage / 100);
+                taxHere = amountInStratum * taxPercentage / 100;
 
                 totalTaxToPay += taxHere;
-                amountInStratum = remainder;
-                taxPercentage += 5;
+                if (remainder>0){
+                    amountInStratum = remainder;
+                    taxPercentage += 5;
+                }
+                else {
+                    break;
+                }
                 System.out.println(totalTaxToPay);
+            }
+            if (remainder<0) {
+                break;
             }
             System.out.println(totalTaxToPay);
         }
