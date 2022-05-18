@@ -5,11 +5,9 @@ import java.util.Scanner;
 public class FinalInlU_TaxCalculator {
     public static void   main(String[]args){
     boolean   calculateAnother   =     true;
-    boolean    seniorCitizen     =    false;
-    int     basicDeductionSenior =    78000;
-    int        basicDeduction    =    14200;
     int      stateTaxBracket     =   540700;      /*In the Skatteverket page it said that this year there's
                                                   only one skiktgräns, from where one pays 20%*/
+    int      basicDeduction      ;
     int       preTaxIncome       ;
     int   incomeAfterDeduction   ;
     int         taxAmount        ;
@@ -18,14 +16,8 @@ public class FinalInlU_TaxCalculator {
     while (calculateAnother){
         //Method calls for user input.
         preTaxIncome  = requestIncome();
-        seniorCitizen = overOrUnder65();
-
-        if (seniorCitizen) {
-            incomeAfterDeduction = preTaxIncome - basicDeductionSenior;
-        }
-        else {
-            incomeAfterDeduction = preTaxIncome - basicDeduction;
-        }
+        basicDeduction = determineBasicDeduction();
+        incomeAfterDeduction = preTaxIncome - basicDeduction;
 
         if (incomeAfterDeduction<=0){
             System.out.println(
@@ -82,17 +74,19 @@ public class FinalInlU_TaxCalculator {
         }
 
     }
-    public static boolean overOrUnder65(){
 
-        Scanner  yesOrNoScan = new Scanner(System.in);
-        char      answer     = 0;
-        boolean validInput   = false;
+    public static int determineBasicDeduction() {
+        Scanner yesOrNoScan = new Scanner(System.in);
+        int basicDeductionSenior = 78000;
+        int basicDeductionYoung = 14200;
+        char answer = 0;
+        boolean validInput = false;
 
-        while (!validInput){
+        while (!validInput) {
 
             try {
                 System.out.println(
-                            "Has this person yet turned 65 years of age during the start of the year? (y/n) ");
+                        "Has this person yet turned 65 years of age during the start of the year? (y/n) ");
                 answer = yesOrNoScan.next().trim().toUpperCase().charAt(0);
 
                 if (answer == 'Y' || answer == 'N')
@@ -101,19 +95,20 @@ public class FinalInlU_TaxCalculator {
                 else {
                     System.out.println(
                             "Invalid answer! You can only answer 'Y' or 'N'");
-                    overOrUnder65();
+                    determineBasicDeduction();
                 }
-            }
-            catch (Exception e){
+            } catch (Exception e) {
                 System.out.println(
-                            "Invalid answer! Error message: " + e);
-                overOrUnder65();
+                        "Invalid answer! Error message: " + e);
+                determineBasicDeduction();
             }
         }
-
-        return answer != 'N';
-
-    }//end of custom method: Continue?
+        if (answer == 'Y') {
+            return basicDeductionSenior;
+        } else {
+            return basicDeductionYoung;
+        }
+    }
     public static boolean continueQuestion(){
 
         Scanner yesOrNoScan  = new Scanner(System.in);
