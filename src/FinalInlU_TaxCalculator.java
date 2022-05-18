@@ -8,31 +8,38 @@ public class FinalInlU_TaxCalculator {
     boolean    seniorCitizen     =    false;
     int     basicDeductionSenior =    78000;
     int        basicDeduction    =    14200;
-    int       stateTaxBracket    =   540700;
-                                                /*In the Skatteverket page it said that this year there's
+    int      stateTaxBracket     =   540700;      /*In the Skatteverket page it said that this year there's
                                                   only one skiktgräns, from where one pays 20%*/
-        int        preTaxIncome     ;
-        int    incomeAfterDeduction ;
-        boolean isInStateTaxBracket ;
-        int          taxAmount      ;
+    int       preTaxIncome       ;
+    int   incomeAfterDeduction   ;
+    int         taxAmount        ;
 
 
     while (calculateAnother){
-
         //Method calls for user input.
         preTaxIncome  = requestIncome();
         seniorCitizen = overOrUnder65();
 
-
-        if (seniorCitizen)
+        if (seniorCitizen) {
             incomeAfterDeduction = preTaxIncome - basicDeductionSenior;
-        else
+        }
+        else {
             incomeAfterDeduction = preTaxIncome - basicDeduction;
+        }
 
-        if (incomeAfterDeduction>stateTaxBracket)
-            calculateTotalTax();
-        else
-            System.out.println("You didn't earn enough to enter the state tax bracket, so you only pay comunal tax.");
+        if (incomeAfterDeduction<=0){
+            System.out.println(
+                    "Your yearly income is less than the basic deduction, so you don't have to pay any tax on it whatsoever.");
+        }
+
+
+        int incomeInStateBracket = incomeAfterDeduction-stateTaxBracket;
+
+        /*
+        while (incomeInStateBracket>0){
+
+        }
+        */
 
 
 
@@ -42,17 +49,18 @@ public class FinalInlU_TaxCalculator {
         }//end of while loop
 
     }//end of main
-    public static int calculateTotalTax(int incomeAfterDeduction){
-        int taxPercentage   = 20;
-        int amountInStratum = incomeAfterDeduction;
+    public static int calculateStateTax(int incomeInStateBracket, int stateTaxBracket){
 
+        int  stateTaxPercentage     = 20;
+        int stateTaxAmount = (incomeInStateBracket) * stateTaxPercentage / 100;
+        return stateTaxAmount;
+    }
+    public static int calculateMunicipalTax(int incomeAfterDeduction){
 
+        int municipalTaxPercentage = 20;
+        int municipalTaxAmount = incomeAfterDeduction * municipalTaxPercentage / 100;
 
-
-
-
-
-
+        return municipalTaxAmount;
     }
     public static int requestIncome(){
         Scanner incomeScan =new Scanner(System.in);
