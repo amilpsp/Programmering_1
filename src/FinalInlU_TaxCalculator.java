@@ -1,20 +1,20 @@
 import java.util.Scanner;
 
 /* Features to add:
-* Actual stratum boundaries
 * Fix if the input breaks with commas instead of points*/
 public class FinalInlU_TaxCalculator {
-    public static void main(String[]args){
-    boolean calculateAnother   =     true;
-    boolean  seniorCitizen     =    false;
-    int   basicDeductionSenior =    78000;
-    int      basicDeduction    =    14200;
-    int        skiktgrans      =   540700;
+    public static void   main(String[]args){
+    boolean   calculateAnother   =     true;
+    boolean    seniorCitizen     =    false;
+    int     basicDeductionSenior =    78000;
+    int        basicDeduction    =    14200;
+    int       stateTaxBracket    =   540700;
                                                 /*In the Skatteverket page it said that this year there's
                                                   only one skiktgräns, from where one pays 20%*/
-    int       preTaxIncome;
-    int   incomeAfterDeduction;
-    int        taxAmount;
+        int        preTaxIncome     ;
+        int    incomeAfterDeduction ;
+        boolean isInStateTaxBracket ;
+        int          taxAmount      ;
 
 
     while (calculateAnother){
@@ -23,12 +23,16 @@ public class FinalInlU_TaxCalculator {
         preTaxIncome  = requestIncome();
         seniorCitizen = overOrUnder65();
 
+
         if (seniorCitizen)
             incomeAfterDeduction = preTaxIncome - basicDeductionSenior;
         else
             incomeAfterDeduction = preTaxIncome - basicDeduction;
 
-
+        if (incomeAfterDeduction>stateTaxBracket)
+            calculateTotalTax();
+        else
+            System.out.println("You didn't earn enough to enter the state tax bracket, so you only pay comunal tax.");
 
 
 
